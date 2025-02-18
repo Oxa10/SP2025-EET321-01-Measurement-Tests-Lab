@@ -1,8 +1,8 @@
-# YOUR NAME
+# Joseph Bower
 # EET321
-# SECTION NUMBER
-# ASSIGNMENT NAME
-# DATE
+# 1
+# Lab 2
+# 2/18/2025
 import subprocess
 import sys
 
