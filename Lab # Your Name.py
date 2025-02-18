@@ -1,8 +1,8 @@
-# YOUR NAME
+# Zackary Sheaffer
 # EET321
-# SECTION NUMBER
-# ASSIGNMENT NAME
-# DATE
+# 01
+# Lab 2: Resistance Measurement
+# 2/18/2025
 import subprocess
 import sys
 
