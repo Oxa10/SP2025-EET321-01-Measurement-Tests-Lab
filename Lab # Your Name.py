@@ -64,13 +64,9 @@ for amp in amp_settings:
     time.sleep(1)
     volts = float(dmm.query("MEAS:VOLT:DC?"))
     resist = volts/amp
-    measurements.append(resist)
+    measurements.append(str(resist))
     supply.write("OUTPut CH1,OFF")
     time.sleep(120)
-
-#Turn off power supply
-time.sleep(1)
-supply.write("OUTPut CH1,OFF")
 
 #Save results to a text file.
 file = open('results.txt','w')
