@@ -1,8 +1,8 @@
-# YOUR NAME
+# Clark Sarge
 # EET321
-# SECTION NUMBER
-# ASSIGNMENT NAME
-# DATE
+# 1
+# Lab 2 Resistance Measurement
+# 2/18/2025
 import subprocess
 import sys
 
