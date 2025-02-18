@@ -1,7 +1,7 @@
-# YOUR NAME
+# Robert Miller
 # EET321
-# SECTION NUMBER
-# ASSIGNMENT NAME
+# SECTION NUMBER 01
+# Lab 2
 # DATE
 import subprocess
 import sys
