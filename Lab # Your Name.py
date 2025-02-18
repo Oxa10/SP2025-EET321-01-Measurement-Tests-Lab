@@ -12,6 +12,7 @@ install("pyvisa")
 
 # Import libraries.
 import pyvisa
+import time
 
 rm = pyvisa.ResourceManager()
 
@@ -42,3 +43,37 @@ try:
     fungen = rm.open_resource(Fuci[0])
 except IndexError:
     print("Function Generator not connected or powered on")
+
+
+#Create a list of measured values.
+measurements = []
+
+#Start program by turning off power supply and setting it to 1 volt.
+supply.write("OUTPut CH1,OFF")
+supply.write("CH1:VOLTage 1")
+time.sleep(1)
+
+
+amp_settings = [0.01, 0.1, 1]
+
+#Set current values and take measurements.
+for amp in amp_settings:
+    supply.write("OUTPut CH1,ON")
+    com = "CH1:CURRent " + str(amp)
+    supply.write(com)
+    time.sleep(1)
+    volts = float(dmm.query("MEAS:VOLT:DC?"))
+    resist = volts/amp
+    measurements.append(resist)
+    supply.write("OUTPut CH1,OFF")
+    time.sleep(120)
+
+#Turn off power supply
+time.sleep(1)
+supply.write("OUTPut CH1,OFF")
+
+#Save results to a text file.
+file = open('results.txt','w')
+for value in measurements:
+  file.write(value)
+file.close()
