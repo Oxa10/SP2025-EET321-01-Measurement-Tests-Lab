@@ -98,9 +98,9 @@ def run_tests():
 run_tests()
 import csv
 # Save the results to a CSV file
-with open('resistance_measurements.csv', mode='w', newline='') as file:
+with open('resistance_measurements.csv', mode='a', newline='') as file:
     writer = csv.writer(file)
-    writer.writerow(['Test Current (A)', 'Measured Voltage (V)', 'Calculated Resistance (Ohms)'])
+    writer.writerow(['Current (A)', 'Measured Voltage (V)', 'Calculated Resistance (Ohms)'])
     writer.writerows(measurements)
 
 supply.write("OUTPut CH1,OFF")
