@@ -65,15 +65,15 @@ for amp in amp_settings:
     time.sleep(1)
     volts = float(dmm.query("MEAS:VOLT:DC?"))
     resist = volts/amp
-    measurements.append([str(amp),str(volts),str(resist)])
+    err = (abs(resist-0.0157)/0.0157)*100
+    measurements.append([str(amp),str(volts),str(resist),str(err)])
     supply.write("OUTPut CH1,OFF")
     if amp != 1:
         time.sleep(120)
 
 # Save data to a CSV file
-with open('test_measurements.csv', mode='w', newline='') as file:
+with open('test_measurements.csv', mode='a', newline='') as file:
     writer = csv.writer(file)
-    writer.writerow(
-        ['Test Current(A)', 'Measured Voltage(V)', 'Calculated Resistance (Ohms)'])
+    writer.writerow(['Test Current (A)', 'Measured Voltage (V)', 'Calculated Resistance (Ohms)','Error (%)'])
     writer.writerows(measurements)
 print("Test complete. Results saved to 'test_measurements.csv'.")  # End test print cmd
