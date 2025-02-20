@@ -13,6 +13,7 @@ install("pyvisa")
 # Import libraries.
 import pyvisa
 import time
+import csv
 
 rm = pyvisa.ResourceManager()
 
@@ -64,12 +65,14 @@ for amp in amp_settings:
     time.sleep(1)
     volts = float(dmm.query("MEAS:VOLT:DC?"))
     resist = volts/amp
-    measurements.append(str(resist))
+    measurements.append([str(amp),str(volts),str(resist)])
     supply.write("OUTPut CH1,OFF")
     time.sleep(120)
 
-#Save results to a text file.
-file = open('results.txt','w')
-for value in measurements:
-  file.write(value)
-file.close()
+# Save data to a CSV file
+with open('test_measurements.csv', mode='w', newline='') as file:
+    writer = csv.writer(file)
+    writer.writerow(
+        ['Test Current(A)', 'Measured Voltage(V)', 'Calculated Resistance (Ω)'])
+    writer.writerows(measurements)
+print("Test complete. Results saved to 'test_measurements.csv'.")  # End test print cmd
