@@ -67,12 +67,13 @@ for amp in amp_settings:
     resist = volts/amp
     measurements.append([str(amp),str(volts),str(resist)])
     supply.write("OUTPut CH1,OFF")
-    time.sleep(120)
+    if amp != 1:
+        time.sleep(120)
 
 # Save data to a CSV file
 with open('test_measurements.csv', mode='w', newline='') as file:
     writer = csv.writer(file)
     writer.writerow(
-        ['Test Current(A)', 'Measured Voltage(V)', 'Calculated Resistance (Ω)'])
+        ['Test Current(A)', 'Measured Voltage(V)', 'Calculated Resistance (Ohms)'])
     writer.writerows(measurements)
 print("Test complete. Results saved to 'test_measurements.csv'.")  # End test print cmd
