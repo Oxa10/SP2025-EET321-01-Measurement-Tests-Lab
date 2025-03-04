@@ -42,3 +42,17 @@ try:
     fungen = rm.open_resource(Fuci[0])
 except IndexError:
     print("Function Generator not connected or powered on")
+
+#measurements every 2 seconds
+def main():
+    try:
+        while True:
+            measured_voltage = oscillo.query("C1:PAVA? PWID")
+            print(f"Oscilloscope Measured Voltage: {measured_voltage}")
+            time.sleep(2)
+    except KeyboardInterrupt:
+        print("Measurement stopped by user.")
+#Run
+if __name__ == "__main__":
+    main()
+
