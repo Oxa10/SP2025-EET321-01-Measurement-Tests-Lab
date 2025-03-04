@@ -12,7 +12,7 @@ install("pyvisa")
 
 # Import libraries.
 import pyvisa
-
+import time
 rm = pyvisa.ResourceManager()
 
 #Find power supply address
@@ -47,7 +47,7 @@ except IndexError:
 def main():
     try:
         while True:
-            measured_voltage = oscillo.query("C1:PAVA? PWID")
+            measured_voltage = oscope.query("C1:PAVA? PWID")
             print(f"Oscilloscope Measured Voltage: {measured_voltage}")
             time.sleep(2)
     except KeyboardInterrupt:
